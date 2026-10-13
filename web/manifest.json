@@ -1,0 +1,11 @@
+{
+  "name": "Multi-Tenant SaaS Billing & Analytics",
+  "short_name": "SaaS Billing",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#6366F1",
+  "description": "Enterprise-grade Multi-Tenant SaaS Billing & Analytics Portal",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false
+}
