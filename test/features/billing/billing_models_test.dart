@@ -51,7 +51,7 @@ void main() {
       );
       expect(invoicePaid.badgeStatus, equals(BadgeStatus.paid));
 
-      final invoiceOpen = Invoice(
+      const invoiceOpen = Invoice(
         id: 'inv_2',
         organizationId: 'org_1',
         invoiceNumber: 'INV-2026-002',
@@ -61,7 +61,7 @@ void main() {
       );
       expect(invoiceOpen.badgeStatus, equals(BadgeStatus.trialing));
 
-      final invoiceVoid = Invoice(
+      const invoiceVoid = Invoice(
         id: 'inv_3',
         organizationId: 'org_1',
         invoiceNumber: 'INV-2026-003',
