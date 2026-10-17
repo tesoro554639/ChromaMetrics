@@ -1,0 +1,33 @@
+# Changelog
+
+All notable changes to the ChromaMetrics project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.1] - 2026-10-17
+
+### Added
+- UTF-8 Byte Order Mark (BOM) in `CsvExporter` for seamless display in Microsoft Excel and spreadsheet tools.
+- Asynchronous object URL revocation to prevent premature cancellation of web downloads.
+- Relative elapsed time formatter (`DateFormatter.formatRelative`) with deterministic testing support.
+- Configurable decimal precision in `CurrencyFormatter`.
+- `hasSupabaseCredentials` and `isProduction` environment helpers in `EnvConfig`.
+- Contributing guidelines, Code of Conduct, Security policy, and GitHub issue/PR templates.
+- Architecture Decision Records (ADRs) for routing, state management, and PDF compilation.
+
+### Fixed
+- Customer usage CSV export now honors active grid filters and search queries.
+- Top navigation bar profile avatar safely extracts initials without runtime range errors on empty strings.
+- Added viewport constraints to top nav bar user info to prevent layout overflow on compact screens.
+- Guarded `MetricCard` against rendering empty subtitle boxes.
+
+## [1.0.0] - 2026-10-14
+
+### Added
+- Initial enterprise multi-tenant dashboard release.
+- Riverpod 2.x state management with instant offline Demo Mode.
+- Supabase PostgreSQL backend with Row-Level Security isolation.
+- PlutoGrid telemetry grid with search, sorting, and CSV export.
+- FL Chart MRR / ARR line charts and churn donut visualizer.
+- Client-side vector PDF invoicing with in-browser print preview.
