@@ -23,4 +23,14 @@ class EnvConfig {
     'DEMO_MODE',
     defaultValue: true,
   );
+
+  /// Returns true if Supabase URL and anon key are populated with real non-placeholder values
+  static bool get hasSupabaseCredentials =>
+      supabaseUrl.isNotEmpty &&
+      !supabaseUrl.contains('xyzcompany') &&
+      supabaseAnonKey.isNotEmpty &&
+      supabaseAnonKey != 'public-anon-key-placeholder';
+
+  /// Returns true if running in production mode (non-demo and with valid backend configuration)
+  static bool get isProduction => !isDemoMode && hasSupabaseCredentials;
 }
