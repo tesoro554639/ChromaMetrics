@@ -81,7 +81,7 @@ class MetricCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                 ],
-                if (subtitle != null)
+                if (subtitle != null && subtitle!.trim().isNotEmpty)
                   Expanded(
                     child: Text(
                       subtitle!,
