@@ -42,3 +42,7 @@ local.properties
 # Environment variables
 .env
 .env.*
+
+# Local temporary files & profile deployment scripts
+about-me/
+

@@ -138,9 +138,11 @@ class _CustomerUsageGridScreenState extends ConsumerState<CustomerUsageGridScree
 
   void _exportGridToCsv(List<CustomerUsage> records, {bool onlySelected = false}) {
     List<List<dynamic>> rows;
+    int exportedCount = 0;
 
     if (onlySelected && _stateManager != null && _stateManager!.checkedRows.isNotEmpty) {
       final checked = _stateManager!.checkedRows;
+      exportedCount = checked.length;
       rows = [
         ['User Name', 'Email', 'Meter Name', 'Total Usage', 'Unit', 'Last Activity', 'Status'],
         ...checked.map((r) => [
@@ -153,7 +155,24 @@ class _CustomerUsageGridScreenState extends ConsumerState<CustomerUsageGridScree
               r.cells['status']?.value ?? '',
             ]),
       ];
+    } else if (_stateManager != null &&
+        (_searchController.text.trim().isNotEmpty || _selectedStatus != 'ALL')) {
+      final filteredRows = _stateManager!.rows;
+      exportedCount = filteredRows.length;
+      rows = [
+        ['User Name', 'Email', 'Meter Name', 'Total Usage', 'Unit', 'Last Activity', 'Status'],
+        ...filteredRows.map((r) => [
+              r.cells['user_name']?.value ?? '',
+              r.cells['user_email']?.value ?? '',
+              r.cells['meter_name']?.value ?? '',
+              r.cells['total_quantity']?.value ?? 0,
+              r.cells['unit']?.value ?? '',
+              r.cells['last_activity']?.value ?? '',
+              r.cells['status']?.value ?? '',
+            ]),
+      ];
     } else {
+      exportedCount = records.length;
       rows = [
         ['User Name', 'Email', 'Meter Name', 'Total Usage', 'Unit', 'Last Activity', 'Status'],
         ...records.map((r) => [
@@ -178,8 +197,8 @@ class _CustomerUsageGridScreenState extends ConsumerState<CustomerUsageGridScree
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(onlySelected
-            ? 'Exported ${_stateManager?.checkedRows.length} selected usage records to CSV.'
-            : 'Customer usage telemetry CSV downloaded successfully.'),
+            ? 'Exported $exportedCount selected usage records to CSV.'
+            : 'Exported $exportedCount customer usage records to CSV.'),
         backgroundColor: AppColors.success,
       ),
     );

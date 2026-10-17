@@ -6,7 +6,8 @@
 [![Riverpod](https://img.shields.io/badge/State_Management-Riverpod_2.5-blueviolet)](https://riverpod.dev)
 [![Database](https://img.shields.io/badge/Database-Supabase_%2F_PostgreSQL_15+-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/Tests-19%20passed-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-20%20passed-brightgreen.svg)]()
+
 
 **ChromaMetrics** is a production-grade, multi-tenant B2B SaaS Billing and Analytics portal engineered with **Flutter Web & Desktop**, **Riverpod 2.x**, and **Supabase (PostgreSQL with strict Row-Level Security)**. 
 

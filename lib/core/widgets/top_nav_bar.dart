@@ -108,24 +108,31 @@ class TopNavBar extends ConsumerWidget {
                 radius: 16,
                 backgroundColor: AppColors.primary,
                 child: Text(
-                  authState.user?.fullName?.substring(0, 1) ?? 'A',
+                  _getUserInitials(authState.user?.fullName),
                   style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
               const SizedBox(width: 10),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    authState.user?.fullName ?? 'Alex Chen',
-                    style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white),
-                  ),
-                  Text(
-                    authState.user?.email ?? 'alex@acmeglobal.io',
-                    style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
-                  ),
-                ],
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 160),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      authState.user?.fullName ?? 'Alex Chen',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white),
+                    ),
+                    Text(
+                      authState.user?.email ?? 'alex@acmeglobal.io',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(width: 16),
               IconButton(
@@ -143,5 +150,13 @@ class TopNavBar extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  String _getUserInitials(String? fullName) {
+    final trimmed = fullName?.trim();
+    if (trimmed != null && trimmed.isNotEmpty) {
+      return trimmed.substring(0, 1).toUpperCase();
+    }
+    return 'A';
   }
 }

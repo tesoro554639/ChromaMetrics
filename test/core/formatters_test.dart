@@ -42,5 +42,35 @@ void main() {
       expect(formatted, contains('Oct 14, 2026'));
       expect(formatted, contains('03:30'));
     });
+
+    test('formatRelative outputs accurate human-readable intervals', () {
+      final baseClock = DateTime(2026, 10, 14, 15, 30, 0);
+
+      // Just now (< 60s)
+      final justNow = baseClock.subtract(const Duration(seconds: 25));
+      expect(DateFormatter.formatRelative(justNow, clock: baseClock), equals('just now'));
+
+      // Minutes ago
+      final fiveMinAgo = baseClock.subtract(const Duration(minutes: 5));
+      expect(DateFormatter.formatRelative(fiveMinAgo, clock: baseClock), equals('5 minutes ago'));
+      final oneMinAgo = baseClock.subtract(const Duration(minutes: 1));
+      expect(DateFormatter.formatRelative(oneMinAgo, clock: baseClock), equals('1 minute ago'));
+
+      // Hours ago
+      final twoHoursAgo = baseClock.subtract(const Duration(hours: 2));
+      expect(DateFormatter.formatRelative(twoHoursAgo, clock: baseClock), equals('2 hours ago'));
+
+      // Yesterday
+      final yesterday = baseClock.subtract(const Duration(days: 1));
+      expect(DateFormatter.formatRelative(yesterday, clock: baseClock), equals('yesterday'));
+
+      // Days ago
+      final fourDaysAgo = baseClock.subtract(const Duration(days: 4));
+      expect(DateFormatter.formatRelative(fourDaysAgo, clock: baseClock), equals('4 days ago'));
+
+      // Long ago (> 30 days)
+      final fortyDaysAgo = baseClock.subtract(const Duration(days: 40));
+      expect(DateFormatter.formatRelative(fortyDaysAgo, clock: baseClock), equals('Sep 04, 2026'));
+    });
   });
 }
