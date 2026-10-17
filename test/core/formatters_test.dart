@@ -24,6 +24,11 @@ void main() {
       final compact1m = CurrencyFormatter.formatCompact(2000000);
       expect(compact1m, contains('2M'));
     });
+
+    test('formats currency with custom decimalDigits', () {
+      expect(CurrencyFormatter.formatCents(1050, decimalDigits: 0), equals('\$11'));
+      expect(CurrencyFormatter.formatAmount(10.555, decimalDigits: 1), equals('\$10.6'));
+    });
   });
 
   group('DateFormatter', () {
