@@ -38,4 +38,11 @@ class AppColors {
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
+
+  /// Subtle dark gradient for high-emphasis containers and telemetry cards.
+  static const LinearGradient cardGradient = LinearGradient(
+    colors: [Color(0xFF1E293B), Color(0xFF111827)],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
 }
