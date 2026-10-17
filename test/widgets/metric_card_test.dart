@@ -46,4 +46,24 @@ void main() {
     expect(find.text('-0.8%'), findsOneWidget);
     expect(find.byIcon(Icons.trending_down), findsOneWidget);
   });
+
+  testWidgets('MetricCard renders cleanly without subtitle or percentageChange', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: MetricCard(
+            title: 'Active Accounts',
+            value: '1,420',
+            icon: Icons.people_outline,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Active Accounts'), findsOneWidget);
+    expect(find.text('1,420'), findsOneWidget);
+    expect(find.byIcon(Icons.people_outline), findsOneWidget);
+    expect(find.byIcon(Icons.trending_up), findsNothing);
+    expect(find.byIcon(Icons.trending_down), findsNothing);
+  });
 }
