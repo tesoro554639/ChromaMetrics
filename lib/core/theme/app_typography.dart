@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
+/// Centralized typography definition using the Google Fonts Inter family.
+///
+/// Provides scalable type tokens for metrics headers, card titles,
+/// and secondary telemetry labels adhering to high-density dashboard standards.
 class AppTypography {
+  /// Global [TextTheme] tuned for the enterprise dark palette.
   static TextTheme textTheme = GoogleFonts.interTextTheme().copyWith(
     displayLarge: GoogleFonts.inter(
       fontSize: 32,
