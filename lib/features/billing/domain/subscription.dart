@@ -25,6 +25,16 @@ class TenantSubscription {
     this.cancelAtPeriodEnd = false,
   });
 
+  bool get isActive => status.toLowerCase() == 'active';
+  bool get isTrialing => status.toLowerCase() == 'trialing';
+
+  /// Returns the number of full days remaining in the current billing period.
+  int daysRemaining({DateTime? clock}) {
+    final now = clock ?? DateTime.now();
+    final difference = currentPeriodEnd.difference(now).inDays;
+    return difference < 0 ? 0 : difference;
+  }
+
   BadgeStatus get badgeStatus {
     switch (status.toLowerCase()) {
       case 'active':
