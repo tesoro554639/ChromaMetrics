@@ -71,5 +71,43 @@ void main() {
       );
       expect(invoiceVoid.badgeStatus, equals(BadgeStatus.canceled));
     });
+
+    test('Invoice isPaid, isOpen, and isVoid helpers evaluate correctly', () {
+      const invoicePaid = Invoice(
+        id: 'inv_1',
+        organizationId: 'org_1',
+        invoiceNumber: 'INV-2026-001',
+        amountDueCents: 9900,
+        amountPaidCents: 9900,
+        status: 'PAID',
+      );
+      expect(invoicePaid.isPaid, isTrue);
+      expect(invoicePaid.isOpen, isFalse);
+      expect(invoicePaid.isVoid, isFalse);
+
+      const invoiceOpen = Invoice(
+        id: 'inv_2',
+        organizationId: 'org_1',
+        invoiceNumber: 'INV-2026-002',
+        amountDueCents: 9900,
+        amountPaidCents: 0,
+        status: 'open',
+      );
+      expect(invoiceOpen.isPaid, isFalse);
+      expect(invoiceOpen.isOpen, isTrue);
+      expect(invoiceOpen.isVoid, isFalse);
+
+      const invoiceVoid = Invoice(
+        id: 'inv_3',
+        organizationId: 'org_1',
+        invoiceNumber: 'INV-2026-003',
+        amountDueCents: 9900,
+        amountPaidCents: 0,
+        status: 'uncollectible',
+      );
+      expect(invoiceVoid.isPaid, isFalse);
+      expect(invoiceVoid.isOpen, isFalse);
+      expect(invoiceVoid.isVoid, isTrue);
+    });
   });
 }
