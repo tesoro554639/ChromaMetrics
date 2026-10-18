@@ -1,0 +1,29 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:multi_tenant_saas_billing/core/utils/number_formatter.dart';
+
+void main() {
+  group('NumberFormatter', () {
+    test('formatPercentage formats positive numbers with plus sign by default', () {
+      expect(NumberFormatter.formatPercentage(12.5), equals('+12.5%'));
+      expect(NumberFormatter.formatPercentage(0.0), equals('0.0%'));
+    });
+
+    test('formatPercentage formats negative numbers accurately', () {
+      expect(NumberFormatter.formatPercentage(-4.2), equals('-4.2%'));
+    });
+
+    test('formatPercentage respects showPlus: false', () {
+      expect(NumberFormatter.formatPercentage(8.0, showPlus: false), equals('8.0%'));
+    });
+
+    test('formatCompact converts numbers into short units', () {
+      expect(NumberFormatter.formatCompact(1500), contains('1.5K'));
+      expect(NumberFormatter.formatCompact(3200000), contains('3.2M'));
+    });
+
+    test('formatCount formats thousands separators correctly', () {
+      expect(NumberFormatter.formatCount(12500), equals('12,500'));
+      expect(NumberFormatter.formatCount(0), equals('0'));
+    });
+  });
+}
