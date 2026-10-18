@@ -52,6 +52,18 @@ void main() {
 
       expect(membership.role, equals(TenantRole.billingManager));
       expect(membership.role.canManageBilling, isTrue);
+      expect(membership.canManageBilling, isTrue);
+      expect(membership.canManageMembers, isFalse);
+    });
+
+    test('TenantRole isOwner, isAdminOrAbove, and isReadOnly evaluate accurately', () {
+      expect(TenantRole.owner.isOwner, isTrue);
+      expect(TenantRole.admin.isOwner, isFalse);
+      expect(TenantRole.owner.isAdminOrAbove, isTrue);
+      expect(TenantRole.admin.isAdminOrAbove, isTrue);
+      expect(TenantRole.member.isAdminOrAbove, isFalse);
+      expect(TenantRole.viewer.isReadOnly, isTrue);
+      expect(TenantRole.member.isReadOnly, isFalse);
     });
   });
 }
