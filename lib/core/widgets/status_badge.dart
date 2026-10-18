@@ -13,11 +13,13 @@ enum BadgeStatus {
 class StatusBadge extends StatelessWidget {
   final BadgeStatus status;
   final String? label;
+  final bool showDot;
 
   const StatusBadge({
     super.key,
     required this.status,
     this.label,
+    this.showDot = false,
   });
 
   @override
@@ -58,14 +60,30 @@ class StatusBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(6),
         border: Border.all(color: fg.withValues(alpha: 0.3), width: 1),
       ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: fg,
-          fontSize: 11,
-          fontWeight: FontWeight.w600,
-          letterSpacing: 0.5,
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (showDot) ...[
+            Container(
+              width: 6,
+              height: 6,
+              decoration: BoxDecoration(
+                color: fg,
+                shape: BoxShape.circle,
+              ),
+            ),
+            const SizedBox(width: 5),
+          ],
+          Text(
+            text,
+            style: TextStyle(
+              color: fg,
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
+          ),
+        ],
       ),
     );
   }
