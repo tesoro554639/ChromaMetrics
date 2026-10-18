@@ -47,4 +47,22 @@ void main() {
     expect(find.text('PAST DUE'), findsOneWidget);
     expect(find.text('CANCELED'), findsOneWidget);
   });
+
+  testWidgets('StatusBadge renders TRIALING and PENDING statuses accurately', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: Column(
+            children: [
+              StatusBadge(status: BadgeStatus.trialing),
+              StatusBadge(status: BadgeStatus.pending),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('TRIAL'), findsOneWidget);
+    expect(find.text('PENDING'), findsOneWidget);
+  });
 }
