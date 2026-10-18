@@ -21,6 +21,32 @@ class CustomerUsage {
     this.status = 'ACTIVE',
   });
 
+  bool get isActive => status.toUpperCase() == 'ACTIVE';
+
+  CustomerUsage copyWith({
+    String? userId,
+    String? userEmail,
+    String? userName,
+    String? meterKey,
+    String? meterName,
+    double? totalQuantity,
+    String? unit,
+    DateTime? lastActivity,
+    String? status,
+  }) {
+    return CustomerUsage(
+      userId: userId ?? this.userId,
+      userEmail: userEmail ?? this.userEmail,
+      userName: userName ?? this.userName,
+      meterKey: meterKey ?? this.meterKey,
+      meterName: meterName ?? this.meterName,
+      totalQuantity: totalQuantity ?? this.totalQuantity,
+      unit: unit ?? this.unit,
+      lastActivity: lastActivity ?? this.lastActivity,
+      status: status ?? this.status,
+    );
+  }
+
   factory CustomerUsage.fromJson(Map<String, dynamic> json) {
     return CustomerUsage(
       userId: json['user_id'] as String,
