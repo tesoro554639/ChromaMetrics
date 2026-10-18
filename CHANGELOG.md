@@ -5,6 +5,18 @@ All notable changes to the ChromaMetrics project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2026-10-18
+
+### Added
+- `NumberFormatter` utility for percentage delta formatting and compact metric notation.
+- `showDot` indicator option in `StatusBadge` widget.
+- `daysRemaining`, `isActive`, and `isTrialing` domain helpers in `TenantSubscription`.
+- `isPaid`, `isOpen`, and `isVoid` domain helpers in `Invoice`.
+- `isOwner`, `isAdminOrAbove`, and `isReadOnly` permission helpers in `TenantRole` & `TenantMembership`.
+- `copyWith` method and `isActive` getter in `CustomerUsage` telemetry entity.
+- Architecture Decision Records for PlutoGrid (ADR 0004), Row-Level Security (ADR 0005), and FL Chart (ADR 0006).
+- Production web deployment guide (`docs/DEPLOYMENT_GUIDE.md`) and API metering ingestion spec (`docs/API_INTEGRATION.md`).
+
 ## [1.0.1] - 2026-10-17
 
 ### Added
