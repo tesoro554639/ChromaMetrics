@@ -65,4 +65,21 @@ void main() {
     expect(find.text('TRIAL'), findsOneWidget);
     expect(find.text('PENDING'), findsOneWidget);
   });
+
+  testWidgets('StatusBadge renders dot indicator when showDot is true', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: StatusBadge(
+            status: BadgeStatus.active,
+            showDot: true,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('ACTIVE'), findsOneWidget);
+    // Find the circular dot container
+    expect(find.byType(Container), findsNWidgets(2)); // Outer container + inner dot container
+  });
 }
