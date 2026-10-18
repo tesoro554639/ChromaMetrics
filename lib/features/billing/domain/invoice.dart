@@ -45,6 +45,10 @@ class Invoice {
     this.lineItems = const [],
   });
 
+  bool get isPaid => status.toLowerCase() == 'paid';
+  bool get isOpen => status.toLowerCase() == 'open';
+  bool get isVoid => status.toLowerCase() == 'void' || status.toLowerCase() == 'uncollectible';
+
   BadgeStatus get badgeStatus {
     switch (status.toLowerCase()) {
       case 'paid':
