@@ -28,6 +28,10 @@ enum TenantRole {
 
   bool get canManageMembers =>
       this == TenantRole.owner || this == TenantRole.admin;
+
+  bool get isOwner => this == TenantRole.owner;
+  bool get isAdminOrAbove => this == TenantRole.owner || this == TenantRole.admin;
+  bool get isReadOnly => this == TenantRole.viewer;
 }
 
 class TenantMembership {
@@ -42,6 +46,9 @@ class TenantMembership {
     required this.userId,
     required this.role,
   });
+
+  bool get canManageBilling => role.canManageBilling;
+  bool get canManageMembers => role.canManageMembers;
 
   factory TenantMembership.fromJson(Map<String, dynamic> json) {
     return TenantMembership(
