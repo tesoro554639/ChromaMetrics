@@ -11,6 +11,15 @@ class AppUser {
     this.avatarUrl,
   });
 
+  String get displayName => (fullName != null && fullName!.trim().isNotEmpty) ? fullName! : email;
+
+  String get initials {
+    if (fullName != null && fullName!.trim().isNotEmpty) {
+      return fullName!.trim().substring(0, 1).toUpperCase();
+    }
+    return email.isNotEmpty ? email.substring(0, 1).toUpperCase() : 'U';
+  }
+
   factory AppUser.fromJson(Map<String, dynamic> json) {
     return AppUser(
       id: json['id'] as String,
@@ -33,6 +42,8 @@ class AppAuthState {
     this.user,
     this.errorMessage,
   });
+
+  bool get hasError => errorMessage != null && errorMessage!.trim().isNotEmpty;
 
   AppAuthState copyWith({
     bool? isAuthenticated,
