@@ -1,7 +1,7 @@
 name: multi_tenant_saas_billing
 description: "A production-grade, multi-tenant SaaS Billing & Analytics Dashboard using Flutter Web."
 publish_to: "none"
-version: 1.0.2+3
+version: 1.0.3+4
 
 
 environment:

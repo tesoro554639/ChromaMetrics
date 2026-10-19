@@ -308,6 +308,7 @@ The codebase enforces strict linting and includes automated unit and widget test
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
 - [Security Policy](SECURITY.md)
+- [Multi-Tenant JWT Security & Token Claims](docs/SECURITY_JWT.md)
 - [Production Web Deployment Guide](docs/DEPLOYMENT_GUIDE.md)
 - [API Telemetry Ingestion Spec](docs/API_INTEGRATION.md)
 - [Architecture Decision Records (ADRs)](docs/adr/)
