@@ -22,4 +22,17 @@ class NumberFormatter {
   static String formatCount(int count) {
     return NumberFormat.decimalPattern().format(count);
   }
+
+  /// Formats byte counts into human-readable data volume units (B, KB, MB, GB, TB).
+  static String formatDataVolume(num bytes) {
+    if (bytes <= 0) return '0 B';
+    const suffixes = ['B', 'KB', 'MB', 'GB', 'TB'];
+    var i = 0;
+    double current = bytes.toDouble();
+    while (current >= 1024 && i < suffixes.length - 1) {
+      current /= 1024;
+      i++;
+    }
+    return '${current.toStringAsFixed(i == 0 ? 0 : 1)} ${suffixes[i]}';
+  }
 }
