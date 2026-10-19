@@ -19,6 +19,30 @@ class SaasMetrics {
     this.arrGrowthPercent = 14.8,
   });
 
+  bool get hasPositiveGrowth => mrrGrowthPercent >= 0;
+
+  SaasMetrics copyWith({
+    double? currentMrr,
+    double? currentArr,
+    double? churnRatePercent,
+    double? arpu,
+    double? ltv,
+    int? activeSubscriptions,
+    double? mrrGrowthPercent,
+    double? arrGrowthPercent,
+  }) {
+    return SaasMetrics(
+      currentMrr: currentMrr ?? this.currentMrr,
+      currentArr: currentArr ?? this.currentArr,
+      churnRatePercent: churnRatePercent ?? this.churnRatePercent,
+      arpu: arpu ?? this.arpu,
+      ltv: ltv ?? this.ltv,
+      activeSubscriptions: activeSubscriptions ?? this.activeSubscriptions,
+      mrrGrowthPercent: mrrGrowthPercent ?? this.mrrGrowthPercent,
+      arrGrowthPercent: arrGrowthPercent ?? this.arrGrowthPercent,
+    );
+  }
+
   factory SaasMetrics.fromJson(Map<String, dynamic> json) {
     final mrr = (json['current_mrr_usd'] as num?)?.toDouble() ?? 0.0;
     final arr = (json['current_arr_usd'] as num?)?.toDouble() ?? (mrr * 12);
