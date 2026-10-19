@@ -5,6 +5,17 @@ All notable changes to the ChromaMetrics project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2026-10-19
+
+### Added
+- `hasPositiveGrowth` and immutable `copyWith` methods to `SaasMetrics`.
+- `netSubscribers` calculation and `copyWith` method to `RevenueTrendPoint`.
+- `displayName` and `initials` extraction helpers to `AppUser`.
+- `hasError` state evaluation property to `AppAuthState`.
+- `formatDataVolume` storage telemetry converter (B, KB, MB, GB, TB) in `NumberFormatter`.
+- ADR 0007 documenting the In-Memory Mock Repository pattern for offline Demo Mode.
+- JWT multi-tenant token validation and security architecture specification (`docs/SECURITY_JWT.md`).
+
 ## [1.0.2] - 2026-10-18
 
 ### Added
