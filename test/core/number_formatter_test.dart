@@ -25,5 +25,13 @@ void main() {
       expect(NumberFormatter.formatCount(12500), equals('12,500'));
       expect(NumberFormatter.formatCount(0), equals('0'));
     });
+
+    test('formatDataVolume converts bytes into KB, MB, and GB', () {
+      expect(NumberFormatter.formatDataVolume(0), equals('0 B'));
+      expect(NumberFormatter.formatDataVolume(512), equals('512 B'));
+      expect(NumberFormatter.formatDataVolume(1024), equals('1.0 KB'));
+      expect(NumberFormatter.formatDataVolume(1048576 * 1.5), equals('1.5 MB'));
+      expect(NumberFormatter.formatDataVolume(1073741824 * 5), equals('5.0 GB'));
+    });
   });
 }
