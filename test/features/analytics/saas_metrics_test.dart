@@ -68,6 +68,12 @@ void main() {
       expect(point.revenue, equals(42500.50));
       expect(point.invoicesCount, equals(85));
       expect(point.churnCount, equals(2));
+      expect(point.netSubscribers, equals(83)); // 85 - 2
+
+      final updated = point.copyWith(churnCount: 5);
+      expect(updated.churnCount, equals(5));
+      expect(updated.netSubscribers, equals(80)); // 85 - 5
+      expect(updated.revenue, equals(42500.50));
     });
   });
 }
