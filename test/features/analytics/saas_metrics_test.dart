@@ -31,6 +31,30 @@ void main() {
       expect(metrics.arpu, equals(0.0));
     });
 
+    test('copyWith updates specified metrics and preserves others', () {
+      const initial = SaasMetrics(
+        currentMrr: 10000,
+        currentArr: 120000,
+        churnRatePercent: 2.5,
+        arpu: 200,
+        ltv: 8000,
+        activeSubscriptions: 50,
+        mrrGrowthPercent: 15.0,
+      );
+
+      expect(initial.hasPositiveGrowth, isTrue);
+
+      final updated = initial.copyWith(
+        currentMrr: 12000,
+        mrrGrowthPercent: -3.5,
+      );
+
+      expect(updated.currentMrr, equals(12000));
+      expect(updated.currentArr, equals(120000));
+      expect(updated.mrrGrowthPercent, equals(-3.5));
+      expect(updated.hasPositiveGrowth, isFalse);
+    });
+
     test('RevenueTrendPoint parses monthly analytics correctly', () {
       final json = {
         'month_period': '2026-09',
