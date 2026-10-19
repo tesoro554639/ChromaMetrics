@@ -77,6 +77,22 @@ class RevenueTrendPoint {
     required this.churnCount,
   });
 
+  int get netSubscribers => invoicesCount - churnCount;
+
+  RevenueTrendPoint copyWith({
+    String? month,
+    double? revenue,
+    int? invoicesCount,
+    int? churnCount,
+  }) {
+    return RevenueTrendPoint(
+      month: month ?? this.month,
+      revenue: revenue ?? this.revenue,
+      invoicesCount: invoicesCount ?? this.invoicesCount,
+      churnCount: churnCount ?? this.churnCount,
+    );
+  }
+
   factory RevenueTrendPoint.fromJson(Map<String, dynamic> json) {
     return RevenueTrendPoint(
       month: json['month_period'] as String? ?? '',
