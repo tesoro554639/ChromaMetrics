@@ -37,6 +37,10 @@ void main() {
 
       final planStarter = SubscriptionPlan.fromJson(jsonStarter);
       expect(planStarter.isPopular, isFalse);
+      expect(planStarter.amountInDollars, equals(29.0));
+      expect(planStarter.isMonthly, isTrue);
+      expect(planStarter.isAnnual, isFalse);
+      expect(planStarter.seatLimit, equals(2));
     });
 
     test('Invoice status maps to expected BadgeStatus', () {
