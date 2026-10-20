@@ -21,6 +21,11 @@ class SubscriptionPlan {
     this.isPopular = false,
   });
 
+  double get amountInDollars => amountInCents / 100.0;
+  bool get isAnnual => interval.toLowerCase() == 'year';
+  bool get isMonthly => interval.toLowerCase() == 'month';
+  int get seatLimit => (limits['seats'] as num?)?.toInt() ?? 1;
+
   factory SubscriptionPlan.fromJson(Map<String, dynamic> json) {
     return SubscriptionPlan(
       id: json['id'] as String,
