@@ -35,6 +35,8 @@ void main() {
       );
       expect(trialSub.isActive, isFalse);
       expect(trialSub.isTrialing, isTrue);
+      expect(trialSub.isTrialExpired(clock: now), isFalse);
+      expect(trialSub.isTrialExpired(clock: now.add(const Duration(days: 15))), isTrue);
       expect(trialSub.badgeStatus, equals(BadgeStatus.trialing));
     });
 
