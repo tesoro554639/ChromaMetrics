@@ -28,6 +28,13 @@ class TenantSubscription {
   bool get isActive => status.toLowerCase() == 'active';
   bool get isTrialing => status.toLowerCase() == 'trialing';
 
+  /// Returns true if trial period has ended.
+  bool isTrialExpired({DateTime? clock}) {
+    if (!isTrialing) return false;
+    final now = clock ?? DateTime.now();
+    return now.isAfter(currentPeriodEnd);
+  }
+
   /// Returns the number of full days remaining in the current billing period.
   int daysRemaining({DateTime? clock}) {
     final now = clock ?? DateTime.now();
