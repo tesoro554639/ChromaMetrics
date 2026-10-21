@@ -48,6 +48,8 @@ class Invoice {
   bool get isPaid => status.toLowerCase() == 'paid';
   bool get isOpen => status.toLowerCase() == 'open';
   bool get isVoid => status.toLowerCase() == 'void' || status.toLowerCase() == 'uncollectible';
+  bool get hasLineItems => lineItems.isNotEmpty;
+  int get totalItemsCount => lineItems.fold<int>(0, (sum, item) => sum + item.quantity);
 
   BadgeStatus get badgeStatus {
     switch (status.toLowerCase()) {
