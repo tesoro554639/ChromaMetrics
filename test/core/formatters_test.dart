@@ -29,6 +29,12 @@ void main() {
       expect(CurrencyFormatter.formatCents(1050, decimalDigits: 0), equals('\$11'));
       expect(CurrencyFormatter.formatAmount(10.555, decimalDigits: 1), equals('\$10.6'));
     });
+
+    test('getCurrencySymbol returns correct currency symbol', () {
+      expect(CurrencyFormatter.getCurrencySymbol('USD'), equals('\$'));
+      expect(CurrencyFormatter.getCurrencySymbol('EUR'), equals('€'));
+      expect(CurrencyFormatter.getCurrencySymbol('GBP'), equals('£'));
+    });
   });
 
   group('DateFormatter', () {
