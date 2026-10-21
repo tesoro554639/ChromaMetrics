@@ -23,6 +23,18 @@ void main() {
       expect(tenant.stripeCustomerId, equals('cus_12345'));
       expect(tenant.billingEmail, equals('billing@acme.com'));
       expect(tenant.planName, equals('Scale Enterprise'));
+      expect(tenant.isEnterprise, isTrue);
+      expect(tenant.tierRank, equals(3));
+
+      final starterTenant = const Tenant(
+        id: 'org-456',
+        name: 'Small Co',
+        slug: 'small-co',
+        billingEmail: 'small@co.com',
+        planName: 'Starter Plan',
+      );
+      expect(starterTenant.isEnterprise, isFalse);
+      expect(starterTenant.tierRank, equals(1));
 
       final serialized = tenant.toJson();
       expect(serialized['id'], equals('org-123'));
