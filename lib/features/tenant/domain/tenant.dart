@@ -19,6 +19,15 @@ class Tenant {
     this.avatarUrl,
   });
 
+  bool get isEnterprise => (planName ?? '').toLowerCase().contains('enterprise');
+
+  int get tierRank {
+    final plan = (planName ?? '').toLowerCase();
+    if (plan.contains('enterprise')) return 3;
+    if (plan.contains('pro') || plan.contains('scale')) return 2;
+    return 1; // starter / default
+  }
+
   factory Tenant.fromJson(Map<String, dynamic> json) {
     return Tenant(
       id: json['id'] as String,
