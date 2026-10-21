@@ -16,4 +16,9 @@ class CurrencyFormatter {
     final format = NumberFormat.compactSimpleCurrency(name: currency);
     return format.format(amount);
   }
+
+  /// Returns the currency symbol for the given ISO currency code.
+  static String getCurrencySymbol(String currency) {
+    return NumberFormat.simpleCurrency(name: currency).currencySymbol;
+  }
 }
