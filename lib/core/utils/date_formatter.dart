@@ -40,5 +40,21 @@ class DateFormatter {
       return formatDate(date);
     }
   }
+
+  /// Formats a [Duration] into a concise readable string (e.g., '1h 15m', '45s', '2d 4h').
+  static String formatDuration(Duration duration) {
+    if (duration.inSeconds < 60) {
+      return '${duration.inSeconds}s';
+    } else if (duration.inMinutes < 60) {
+      final remSec = duration.inSeconds % 60;
+      return remSec == 0 ? '${duration.inMinutes}m' : '${duration.inMinutes}m ${remSec}s';
+    } else if (duration.inHours < 24) {
+      final remMin = duration.inMinutes % 60;
+      return remMin == 0 ? '${duration.inHours}h' : '${duration.inHours}h ${remMin}m';
+    } else {
+      final remHours = duration.inHours % 24;
+      return remHours == 0 ? '${duration.inDays}d' : '${duration.inDays}d ${remHours}h';
+    }
+  }
 }
 
