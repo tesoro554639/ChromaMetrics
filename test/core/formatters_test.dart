@@ -83,5 +83,15 @@ void main() {
       final fortyDaysAgo = baseClock.subtract(const Duration(days: 40));
       expect(DateFormatter.formatRelative(fortyDaysAgo, clock: baseClock), equals('Sep 04, 2026'));
     });
+
+    test('formatDuration outputs readable duration intervals', () {
+      expect(DateFormatter.formatDuration(const Duration(seconds: 45)), equals('45s'));
+      expect(DateFormatter.formatDuration(const Duration(minutes: 15)), equals('15m'));
+      expect(DateFormatter.formatDuration(const Duration(minutes: 15, seconds: 30)), equals('15m 30s'));
+      expect(DateFormatter.formatDuration(const Duration(hours: 2)), equals('2h'));
+      expect(DateFormatter.formatDuration(const Duration(hours: 2, minutes: 25)), equals('2h 25m'));
+      expect(DateFormatter.formatDuration(const Duration(days: 3)), equals('3d'));
+      expect(DateFormatter.formatDuration(const Duration(days: 3, hours: 4)), equals('3d 4h'));
+    });
   });
 }
