@@ -5,6 +5,19 @@ All notable changes to the ChromaMetrics project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2026-10-22
+
+### Added
+- `cardTransparent` and `primaryGlow` design tokens to `AppColors` for dark theme depth.
+- `formattedQuantity` helper in `CustomerUsage` domain model with unit symbol appending.
+- `formatDuration` helper in `DateFormatter` for human-readable time spans.
+- `annualSavingsPercent` calculation method in `SubscriptionPlan`.
+- ADR 0011 documenting RBAC and permissions hierarchy (`docs/adr/0011-rbac-and-permissions-hierarchy.md`).
+- Offline simulation troubleshooting guide (`docs/TROUBLESHOOTING.md`).
+- Performance benchmarks and load testing documentation (`docs/BENCHMARKS.md`).
+- Webhook integration specifications and event payload definitions (`docs/WEBHOOKS.md`).
+- Unit test coverage for `CustomerUsage.formattedQuantity`, `DateFormatter.formatDuration`, and `SubscriptionPlan.annualSavingsPercent`.
+
 ## [1.0.3] - 2026-10-19
 
 ### Added
