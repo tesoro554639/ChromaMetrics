@@ -47,5 +47,31 @@ void main() {
       expect(updated.status, equals('INACTIVE'));
       expect(updated.isActive, isFalse);
     });
+
+    test('formattedQuantity returns readable quantity with unit string', () {
+      final wholeUsage = CustomerUsage(
+        userId: 'usr_2',
+        userEmail: 'ops@acme.com',
+        userName: 'Sam',
+        meterKey: 'meter_api_calls',
+        meterName: 'API Gateway',
+        totalQuantity: 2500,
+        unit: 'requests',
+        lastActivity: now,
+      );
+      expect(wholeUsage.formattedQuantity, equals('2500 requests'));
+
+      final decimalUsage = CustomerUsage(
+        userId: 'usr_3',
+        userEmail: 'storage@acme.com',
+        userName: 'Sam',
+        meterKey: 'meter_storage_gb',
+        meterName: 'Blob Storage',
+        totalQuantity: 42.5,
+        unit: 'GB',
+        lastActivity: now,
+      );
+      expect(decimalUsage.formattedQuantity, equals('42.5 GB'));
+    });
   });
 }
