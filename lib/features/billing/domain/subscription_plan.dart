@@ -26,6 +26,16 @@ class SubscriptionPlan {
   bool get isMonthly => interval.toLowerCase() == 'month';
   int get seatLimit => (limits['seats'] as num?)?.toInt() ?? 1;
 
+  /// Calculates percentage savings of this annual plan compared against an annualized monthly cost.
+  /// Returns 0 if this plan is not annual or if monthly baseline is non-positive.
+  int annualSavingsPercent(int monthlyAmountInCents) {
+    if (!isAnnual || monthlyAmountInCents <= 0) return 0;
+    final annualizedMonthly = monthlyAmountInCents * 12;
+    if (amountInCents >= annualizedMonthly) return 0;
+    final diff = annualizedMonthly - amountInCents;
+    return ((diff / annualizedMonthly) * 100).round();
+  }
+
   factory SubscriptionPlan.fromJson(Map<String, dynamic> json) {
     return SubscriptionPlan(
       id: json['id'] as String,
