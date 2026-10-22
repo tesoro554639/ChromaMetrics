@@ -43,6 +43,34 @@ void main() {
       expect(planStarter.seatLimit, equals(2));
     });
 
+    test('SubscriptionPlan calculates annualSavingsPercent correctly', () {
+      const annualPlan = SubscriptionPlan(
+        id: 'plan_pro_annual',
+        name: 'Pro Tier (Annual)',
+        description: 'Billed annually',
+        amountInCents: 96000,
+        interval: 'year',
+        features: ['All Pro features'],
+        limits: {'seats': 10},
+        stripePriceId: 'price_annual_1',
+      );
+      expect(annualPlan.annualSavingsPercent(10000), equals(20));
+
+      const monthlyPlan = SubscriptionPlan(
+        id: 'plan_pro_month',
+        name: 'Pro Tier',
+        description: 'Billed monthly',
+        amountInCents: 10000,
+        interval: 'month',
+        features: [],
+        limits: {},
+        stripePriceId: 'price_month_1',
+      );
+      expect(monthlyPlan.annualSavingsPercent(10000), equals(0));
+      expect(annualPlan.annualSavingsPercent(0), equals(0));
+      expect(annualPlan.annualSavingsPercent(-500), equals(0));
+    });
+
     test('Invoice status maps to expected BadgeStatus', () {
       final invoicePaid = Invoice(
         id: 'inv_1',
