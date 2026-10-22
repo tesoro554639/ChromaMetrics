@@ -23,6 +23,13 @@ class CustomerUsage {
 
   bool get isActive => status.toUpperCase() == 'ACTIVE';
 
+  /// Formats the quantity with its unit (e.g., "1200 requests", "45.5 GB").
+  String get formattedQuantity {
+    final isWhole = totalQuantity % 1 == 0;
+    final qtyStr = isWhole ? totalQuantity.toInt().toString() : totalQuantity.toStringAsFixed(1);
+    return '$qtyStr $unit';
+  }
+
   CustomerUsage copyWith({
     String? userId,
     String? userEmail,
