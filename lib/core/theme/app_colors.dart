@@ -45,4 +45,14 @@ class AppColors {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
+
+  /// Semi-transparent dark surface for glassmorphic cards and modal overlays.
+  static final Color cardTransparent = const Color(0xFF1E293B).withValues(alpha: 0.85);
+
+  /// Subtle glow shadow for highlighted metrics and primary active states.
+  static final BoxShadow primaryGlow = BoxShadow(
+    color: primary.withValues(alpha: 0.25),
+    blurRadius: 16,
+    offset: const Offset(0, 4),
+  );
 }
