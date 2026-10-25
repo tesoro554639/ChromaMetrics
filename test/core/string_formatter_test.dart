@@ -18,5 +18,16 @@ void main() {
       expect(StringFormatter.truncate('Very long organization title', 9), equals('Very long...'));
       expect(StringFormatter.truncate('Short', 10), equals('Short'));
     });
+
+    test('capitalize converts first character to upper case', () {
+      expect(StringFormatter.capitalize('active'), equals('Active'));
+      expect(StringFormatter.capitalize(''), equals(''));
+      expect(StringFormatter.capitalize('hello world'), equals('Hello world'));
+    });
+
+    test('maskApiKey hides middle characters safely', () {
+      expect(StringFormatter.maskApiKey('sk_live_998877665544'), equals('sk_live_...5544'));
+      expect(StringFormatter.maskApiKey('short'), equals('****'));
+    });
   });
 }
