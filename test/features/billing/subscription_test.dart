@@ -68,5 +68,39 @@ void main() {
       );
       expect(expiredSub.daysRemaining(clock: now), equals(0));
     });
+
+    test('isPastDue, isCanceled, and gracePeriodDaysRemaining evaluate accurately', () {
+      final pastDueSub = TenantSubscription(
+        id: 'sub_5',
+        organizationId: 'org_1',
+        planId: 'pro',
+        planName: 'Pro Tier',
+        planAmountCents: 9900,
+        interval: 'month',
+        status: 'past_due',
+        currentPeriodStart: now.subtract(const Duration(days: 32)),
+        currentPeriodEnd: now.subtract(const Duration(days: 2)), // ended 2 days ago
+      );
+      expect(pastDueSub.isPastDue, isTrue);
+      expect(pastDueSub.isCanceled, isFalse);
+      expect(pastDueSub.badgeStatus, equals(BadgeStatus.pastDue));
+      // 7 days grace - 2 days elapsed = 5 days left
+      expect(pastDueSub.gracePeriodDaysRemaining(clock: now), equals(5));
+
+      final canceledSub = TenantSubscription(
+        id: 'sub_6',
+        organizationId: 'org_1',
+        planId: 'pro',
+        planName: 'Pro Tier',
+        planAmountCents: 9900,
+        interval: 'month',
+        status: 'canceled',
+        currentPeriodStart: now.subtract(const Duration(days: 60)),
+        currentPeriodEnd: now.subtract(const Duration(days: 30)),
+      );
+      expect(canceledSub.isCanceled, isTrue);
+      expect(canceledSub.isPastDue, isFalse);
+      expect(canceledSub.gracePeriodDaysRemaining(clock: now), equals(0));
+    });
   });
 }
