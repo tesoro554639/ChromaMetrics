@@ -27,6 +27,8 @@ class TenantSubscription {
 
   bool get isActive => status.toLowerCase() == 'active';
   bool get isTrialing => status.toLowerCase() == 'trialing';
+  bool get isPastDue => status.toLowerCase() == 'past_due';
+  bool get isCanceled => status.toLowerCase() == 'canceled';
 
   /// Returns true if trial period has ended.
   bool isTrialExpired({DateTime? clock}) {
@@ -40,6 +42,16 @@ class TenantSubscription {
     final now = clock ?? DateTime.now();
     final difference = currentPeriodEnd.difference(now).inDays;
     return difference < 0 ? 0 : difference;
+  }
+
+  /// Returns days left in grace period before hard account suspension if status is past_due.
+  /// Defaults to 7 days from [currentPeriodEnd]. Returns 0 if not past_due or already expired.
+  int gracePeriodDaysRemaining({DateTime? clock, int maxGraceDays = 7}) {
+    if (!isPastDue) return 0;
+    final now = clock ?? DateTime.now();
+    final graceDeadline = currentPeriodEnd.add(Duration(days: maxGraceDays));
+    final remaining = graceDeadline.difference(now).inDays;
+    return remaining < 0 ? 0 : remaining;
   }
 
   BadgeStatus get badgeStatus {
