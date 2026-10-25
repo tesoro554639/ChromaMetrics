@@ -20,12 +20,35 @@ class Tenant {
   });
 
   bool get isEnterprise => (planName ?? '').toLowerCase().contains('enterprise');
+  bool get hasStripeCustomer => stripeCustomerId != null && stripeCustomerId!.isNotEmpty;
 
   int get tierRank {
     final plan = (planName ?? '').toLowerCase();
     if (plan.contains('enterprise')) return 3;
     if (plan.contains('pro') || plan.contains('scale')) return 2;
     return 1; // starter / default
+  }
+
+  Tenant copyWith({
+    String? id,
+    String? name,
+    String? slug,
+    String? stripeCustomerId,
+    String? billingEmail,
+    String? currency,
+    String? planName,
+    String? avatarUrl,
+  }) {
+    return Tenant(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      slug: slug ?? this.slug,
+      stripeCustomerId: stripeCustomerId ?? this.stripeCustomerId,
+      billingEmail: billingEmail ?? this.billingEmail,
+      currency: currency ?? this.currency,
+      planName: planName ?? this.planName,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
+    );
   }
 
   factory Tenant.fromJson(Map<String, dynamic> json) {
