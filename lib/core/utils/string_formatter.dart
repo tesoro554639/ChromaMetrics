@@ -32,4 +32,20 @@ class StringFormatter {
     if (text.length <= maxLength) return text;
     return '${text.substring(0, maxLength)}...';
   }
+
+  /// Capitalizes the first letter of the string.
+  /// Example: `capitalize("active")` -> `"Active"`
+  static String capitalize(String text) {
+    if (text.isEmpty) return text;
+    return text[0].toUpperCase() + text.substring(1);
+  }
+
+  /// Masks sensitive API keys, keeping only the leading prefix and last 4 characters.
+  /// Example: `maskApiKey("sk_live_998877665544")` -> `"sk_live_...5544"`
+  static String maskApiKey(String key) {
+    if (key.length <= 8) return '****';
+    final prefix = key.length > 8 ? key.substring(0, 8) : key.substring(0, 4);
+    final suffix = key.substring(key.length - 4);
+    return '$prefix...$suffix';
+  }
 }
