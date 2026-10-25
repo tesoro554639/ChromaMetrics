@@ -33,5 +33,13 @@ void main() {
       expect(NumberFormatter.formatDataVolume(1048576 * 1.5), equals('1.5 MB'));
       expect(NumberFormatter.formatDataVolume(1073741824 * 5), equals('5.0 GB'));
     });
+
+    test('formatRate formats event counts into appropriate rate strings', () {
+      expect(NumberFormatter.formatRate(120, const Duration(seconds: 1)), equals('120.0 req/s'));
+      expect(NumberFormatter.formatRate(300, const Duration(seconds: 60)), equals('5.0 req/s'));
+      expect(NumberFormatter.formatRate(30, const Duration(minutes: 1)), equals('0.5 req/s'));
+      expect(NumberFormatter.formatRate(0, const Duration(seconds: 10)), equals('0.0 req/s'));
+      expect(NumberFormatter.formatRate(50, Duration.zero), equals('0.0 req/s'));
+    });
   });
 }
