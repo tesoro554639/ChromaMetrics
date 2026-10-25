@@ -5,6 +5,18 @@ All notable changes to the ChromaMetrics project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] - 2026-10-25
+
+### Added
+- `formatRate` telemetry helper in `NumberFormatter` for calculating and formatting events per second/minute.
+- `capitalize` and `maskApiKey` privacy helpers in `StringFormatter`.
+- `isPastDue`, `isCanceled`, and `gracePeriodDaysRemaining` evaluation helpers in `TenantSubscription`.
+- `hasStripeCustomer` and `copyWith` method in `Tenant` domain entity.
+- Tenant provisioning and onboarding runbook (`docs/TENANT_ONBOARDING.md`).
+- ADR 0012 documenting database connection pooling and failover architecture (`docs/adr/0012-db-connection-pooling-and-failover.md`).
+- Multi-tiered API rate limiting and token bucket throttling documentation (`docs/RATE_LIMITING.md`).
+- Comprehensive unit tests for `NumberFormatter.formatRate`, `StringFormatter.capitalize`, `StringFormatter.maskApiKey`, and `TenantSubscription.gracePeriodDaysRemaining`.
+
 ## [1.0.4] - 2026-10-22
 
 ### Added
