@@ -35,4 +35,18 @@ class NumberFormatter {
     }
     return '${current.toStringAsFixed(i == 0 ? 0 : 1)} ${suffixes[i]}';
   }
+
+  /// Formats an event count over a duration into a readable rate (e.g., '120.0 req/s', '45.0 req/m').
+  static String formatRate(num count, Duration duration) {
+    if (duration.inSeconds <= 0) return '0.0 req/s';
+    final perSec = count / duration.inSeconds;
+    if (perSec >= 1.0) {
+      return '${perSec.toStringAsFixed(1)} req/s';
+    } else if (duration.inMinutes > 0) {
+      final perMin = count / duration.inMinutes;
+      return '${perMin.toStringAsFixed(1)} req/m';
+    } else {
+      return '${count.toStringAsFixed(0)} req/${duration.inSeconds}s';
+    }
+  }
 }
